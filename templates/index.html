@@ -1,45 +1,62 @@
-<!DOCTYPE html>
-<html data-theme="dim" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>StopWords By Michaen Rangel</title>
-  </head>
-  <body>
-    <main class="mockup-window min-h-screen h-screen">
-        <div class="hero h-full bg-base-200">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-              <div class="text-center lg:text-left">
-                <h1 class="text-5xl font-bold">StopWords Remover <br/>by <span class="text-primary">Michaen Rangel</span></h1>
-                <p class="py-6 text-lg">En esta pagina podras hacer uso del script hecho con Python para remover las stop words y lematizar las palabras, esto con el fin de convertir el texto a glosa de <a href="https://es.wikipedia.org/wiki/Lengua_de_se%C3%B1as_colombiana" target="_blank" class="text-primary">Lengua de señas Colombiana</a>.</p>
-              </div>
-              <div class="card shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
-                <form class="card-body" action="/convertText" method="post">
-                  <div class="form-control">
-                    <label class="input input-bordered flex items-center gap-2 font-semibold text-primary">
-                      Texto
-                      <input value="{{text}}" name="texto" type="text" class="grow text-neutral-content" required/>
-                    </label>
-                  </div>
-                  <div class="form-control">
-                    <label class="input input-bordered  flex items-center gap-2 text-primary font-semibold">
-                      Salida
-                      <input value="{{text_converted}}" type="text" class="grow text-neutral-content uppercase" disabled required/>
-                    </label>
-                  </div>
-                  <div class="form-control mt-4">
-                    <button type="submit" class="btn btn-primary">Remover</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+{% extends './layout.html' %}
+{% block title %}StopWords By Michaen Rangel{% endblock%}
+
+{% block body %}
+  <div class="hero h-full bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <h1 class="text-5xl font-bold">
+          StopWords Remover <br />by
+          <span class="text-primary">Michaen Rangel</span>
+        </h1>
+        <p class="py-6 text-lg">
+          En esta pagina podras hacer uso del script hecho con Python para
+          remover las stop words y lematizar las palabras, esto con el fin de
+          convertir el texto a glosa de
+          <a
+            href="https://es.wikipedia.org/wiki/Lengua_de_se%C3%B1as_colombiana"
+            target="_blank"
+            class="text-primary"
+            >Lengua de señas Colombiana</a
+          >.
+        </p>
+      </div>
+      <div class="card shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
+        <form class="card-body" action="/convertText" method="post">
+          <div class="form-control">
+            <label
+              class="input input-bordered flex items-center gap-2 font-semibold text-primary"
+            >
+              Texto
+              <input
+                value="{{text}}"
+                name="texto"
+                type="text"
+                class="grow text-neutral-content"
+                required
+              />
+            </label>
           </div>
-    </main>
-  </body>
-</html>
+          <div class="form-control">
+            <label
+              class="input input-bordered flex items-center gap-2 text-primary font-semibold"
+            >
+              Salida
+              <input
+                value="{{text_converted}}"
+                type="text"
+                class="grow text-neutral-content uppercase"
+                disabled
+                required
+              />
+            </label>
+          </div>
+          <div class="form-control mt-4">
+            <button type="submit" class="btn btn-primary">Remover</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

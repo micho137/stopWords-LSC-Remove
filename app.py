@@ -15,5 +15,9 @@ def convertText():
     newText = convertToString(processed_text)
     return render_template('index.html',text_converted=newText,text=texto)
 
+def notFound(error):
+    return render_template('404.html'), 404
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", use_reloader=False, debug=False)
+    app.register_error_handler(404, notFound)
+    app.run(host="0.0.0.0", use_reloader=False, debug=True)
