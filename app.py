@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-#from script.red import preprocess_text
 from script.testSpacy import preprocess_text
 from script.convertToString import convertToString
 
@@ -21,4 +20,4 @@ def notFound(error):
 
 if __name__ == "__main__":
     app.register_error_handler(404, notFound)
-    app.run(host="0.0.0.0", use_reloader=False, debug=True)
+    app.run(host="0.0.0.0", use_reloader=False, debug=False)
