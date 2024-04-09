@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-from script.red import preprocess_text
+#from script.red import preprocess_text
+from script.testSpacy import preprocess_text
 from script.convertToString import convertToString
 
 app = Flask(__name__)
