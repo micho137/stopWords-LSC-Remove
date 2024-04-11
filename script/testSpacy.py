@@ -1,10 +1,11 @@
 from script.stopWords import exceptions
 import spacy
 def preprocess_text(text):
-    nlp = spacy.load('es_core_news_sm')
+    nlp = spacy.load('es_dep_news_trf')
     doc = nlp(text)
     processed_text = []
     for token in doc:
+        print(token.text, token.pos_)
         if token.text not in exceptions:
             if token.pos_ == 'PROPN':
                 spell = list(token.text)
