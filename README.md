@@ -1,4 +1,4 @@
-# stopWords by Michaen Rangel
+# stopWords LSC Remove by Michaen Rangel
 En este proyecto se usó:
 * [spaCy](https://spacy.io/)(Es una librería de software para procesamiento de lenguaje natural programado en Python)
 * [Flask](https://flask.palletsprojects.com/en/3.0.x/)(Framework minimalista de Python)
