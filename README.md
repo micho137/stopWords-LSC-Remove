@@ -42,10 +42,27 @@ Ahora creamos un archivo py donde vamos a importar spaCy e inicializaremos el mo
 ```python
 import spacy
 nlp = spacy.load("es_core_news_sm")
-doc = nlp("Esto es una frase.")
-print([(w.text, w.pos_) for w in doc])
+doc = nlp("Quiero comprar un helado para ti.")
+print([(token.text, token.pos_) for token in doc])
 ```
 y la salida obtenida es la siguiente:
 ```python
-[('Esto', 'PRON'), ('es', 'AUX'), ('una', 'DET'), ('frase', 'NOUN'), ('.', 'PUNCT')]
+[('Quiero', 'VERB'), ('comprar', 'VERB'), ('un', 'DET'), ('helado', 'NOUN'), ('para', 'ADP'), ('ti', 'PRON'), ('.', 'PUNCT')]
+```
+De la salida podemos resaltar dos caracteristicas:
+* w.text - corresponde a los elementos tokenizados e identificados dentro de la oración
+* w.pos_ - corresponde al identificador gramatical para cada palabra
+  * VERB = Verbo
+  * DET = Determinante
+  * NOUN = Sustantivo
+  * PRON = Pronombre
+  * ADP = Preposiciones y posposiciones
+  * PUNCT = Signos de puntuación
+
+Debemos ahora priorizar la convercion de las palabras, primero debemos lematizar las palabras, para ello nos apoyaremos en el identificador gramatical `VERB` y la propiedad `token.lemma_`:
+```python
+processed_text = []
+if token.pos_ == "VERB"
+    lemma = token.lemma_
+    processed_text.append(lemma)
 ```
