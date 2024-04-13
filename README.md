@@ -50,19 +50,70 @@ y la salida obtenida es la siguiente:
 [('Quiero', 'VERB'), ('comprar', 'VERB'), ('un', 'DET'), ('helado', 'NOUN'), ('para', 'ADP'), ('ti', 'PRON'), ('.', 'PUNCT')]
 ```
 De la salida podemos resaltar dos caracteristicas:
-* w.text - corresponde a los elementos tokenizados e identificados dentro de la oración
-* w.pos_ - corresponde al identificador gramatical para cada palabra
+* token.text - corresponde a los elementos tokenizados e identificados dentro de la oración
+* token.pos_ - corresponde al identificador gramatical para cada palabra
   * VERB = Verbo
   * DET = Determinante
   * NOUN = Sustantivo
   * PRON = Pronombre
   * ADP = Preposiciones y posposiciones
   * PUNCT = Signos de puntuación
+* Aqui una tabla donde podemos encontrar todos los identificadores
+  
+| Type | Description |
+|:---:|:---:|
+| ADJ | Adjectivo |
+| ADP | Preposicion y posposicion |
+| ADV | Adverbio |
+| AUX | Auxiliar |
+| CCONJ | Conjunción coordinada |
+| DET | Determinante |
+| INTJ | Interjección |
+| NOUN | Sustantivo |
+| NUM | Número |
+| PART | Particula gramatical |
+| PRON | Pronombre |
+| PROPN | Nombre propio |
+| PUNCT | Signo de puntuación |
+| SCONJ | Conjunción subordinada |
+| SYM | Simbolos |
+| VERB | Verbos |
+| X | Otros |
 
 Debemos ahora priorizar la convercion de las palabras, primero debemos lematizar las palabras, para ello nos apoyaremos en el identificador gramatical `VERB` y la propiedad `token.lemma_`:
 ```python
 processed_text = []
-if token.pos_ == "VERB"
-    lemma = token.lemma_
-    processed_text.append(lemma)
+for token in doc:
+  if token.pos_ == "VERB"
+      lemma = token.lemma_
+      processed_text.append(lemma)
+print(processed_text)
+```
+Nos apoyamos con un arreglo para almacenar las salidas correspondientes y observamos la salida:
+```python
+['querer', 'comprar']
+```
+A partir de ahora nos queda clasificar los nombres y tener en cuenta que no todos los stop words se excluyen dentro de la LSC
+```python
+if token.pos == "PROPN":
+    spell = list(token.text)
+    processed_text.extend(spell)
+```
+Si dentro del texto se encuentra un token con identificador `PROPN` entonces procedemos a crear una lista de unicaracteres, es decir, obtenemos una lista de caracteres que anexaremos al arreglo final, por ejemplo:
+```python
+doc = nlp("Carlos quiere comprar un helado")
+processed_text = []
+for token in doc:
+    if token.pos_ == 'PROPN':
+        spell = list(token.text)
+        processed_text.extend(spell)
+    else:
+        if token.pos_ == 'VERB':
+            lemma = token.lemma_
+            processed_text.append(lemma)
+print(processed_text)
+```
+La salida correspondiente:
+```python
+['C', 'a', 'r', 'l', 'o', 's', 'querer', 'comprar']
 ```
